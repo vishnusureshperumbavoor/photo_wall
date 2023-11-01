@@ -31,7 +31,7 @@ Now you can use the application at [localhost:3000](https://localhost:3001)
 
 ## Contact
 
-For any inquiries or feedback, please contact [Vishnu Suresh Perumbavoor](https://vishnusureshperumbavoor.github.io/V-S-P/) at <br> <br>
+For any inquiries or feedback, contact [Vishnu Suresh Perumbavoor](https://vishnusureshperumbavoor.github.io/V-S-P/) at <br> <br>
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [![github][github-shield]][github-url]
 [![Twitter][twitter-shield]][twitter-url]
