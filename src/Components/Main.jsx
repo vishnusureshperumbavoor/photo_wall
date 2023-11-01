@@ -1,16 +1,15 @@
-import React,{useEffect, useState} from 'react'
+import React from 'react'
 import Title from './Title'
 import { connect } from 'react-redux'
+import PhotoWall from './Photowall'
+
 
 function Main({posts}) {
-  useEffect(() => {
-    console.log(posts);
-  }, [])
   
   return (
     <>
     <Title title="PhotoWall" />
-    {/* <Photowall posts={posts} onRemovePhoto={removePhoto}/> */}
+    <PhotoWall posts={posts}/>
     </>
   )
 }

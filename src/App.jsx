@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store';
 import Main from './Components/Main';
+import AddPhoto from './Components/AddPhoto';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
     <Router>
     <Routes>
     <Route path="/" element={<Main/>} />
-    {/* <Route path="/addphoto" element={<AddPhoto posts={posts} addPhoto={addPhoto}/>} /> */}
+    <Route path="/addphoto" element={<AddPhoto/>} />
     </Routes>
     </Router>
     </Provider>
