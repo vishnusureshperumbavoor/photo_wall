@@ -1,17 +1,16 @@
 import React from 'react'
 import Photo from './Photo'
-import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom';
 
 function Photowall({posts}) {
   const navigate = useNavigate();
   return (
-    <>
-    <button className="addIcon" onClick={()=>navigate('/addphoto')}>+</button>
+    <div className="photowall">
+    <button role="button-3" className="button-3" onClick={()=>navigate('/addphoto')}>Add Image</button>
     <div className="photo-grid">
         {posts.map((post,index)=><Photo key={index} post={post} />)}
     </div>
-    </>
+    </div>
   )
 }
 

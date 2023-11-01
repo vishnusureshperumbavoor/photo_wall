@@ -3,9 +3,7 @@ import Title from './Title'
 import { connect } from 'react-redux'
 import PhotoWall from './Photowall'
 
-
 function Main({posts}) {
-  
   return (
     <>
     <Title title="PhotoWall" />

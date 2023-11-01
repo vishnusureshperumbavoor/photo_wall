@@ -19,12 +19,12 @@ function AddPhoto() {
       };
   return (
     <>
-    <h1>PhotoWall</h1>
-    <div className="">
+    <h1 onClick={()=>navigate("/")}>PhotoWall</h1>
+    <div className="formdiv">
     <form action="" onSubmit={handleAddPost}>
-        <input type="text" placeholder="Link" name="imageLink" onChange={handleChange} />
-        <input type="text" placeholder="Description" name="description" onChange={handleChange} />
-        <button>Post</button>
+        <input type="text" placeholder="Link" name="imageLink" onChange={handleChange} /><br /><br />
+        <input type="text" placeholder="Description" name="description" onChange={handleChange} /><br />
+        <button className="button-3">Post</button>
     </form>
     </div>
     </>
