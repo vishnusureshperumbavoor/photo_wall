@@ -102,7 +102,7 @@ html {
     outline: none;
     resize: vertical;
    }
-   .addIcon {
+.addIcon {
     background: url("https://image.flaticon.com/icons/svg/60/60740.svg") center no-repeat;
     background-size: contain;
     padding: 40px;
@@ -151,13 +151,14 @@ html {
     justify-content: center;
     color: black
    }
-   .form {
+
+.form {
     width: 360px;
     padding: 0 0 0;
     margin: auto;
-   }
+}
     
-   .form input {
+.form input {
     font-family: sans-serif;
     outline: 0;
     background: #f2f2f2;
@@ -167,7 +168,7 @@ html {
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-    }
+}
    .form button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
