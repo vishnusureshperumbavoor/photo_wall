@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 let num = 3;
 
-function AddPhoto({posts,addPhoto}) {
+function AddPhoto() {
     const [formData, setFormData] = useState({id:num})
 
     const handleChange = (event) => {
@@ -11,7 +11,6 @@ function AddPhoto({posts,addPhoto}) {
 
     function handleSubmit(event){
         event.preventDefault();
-        addPhoto(formData);
     }
   return (
     <>
