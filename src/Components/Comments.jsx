@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../reducers/posts";
-import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
 function Comments() {

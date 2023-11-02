@@ -7,6 +7,7 @@ const posts = (state = initialState, action) => {
     case ADD_POST:
       return { ...state, posts: [...state.posts, action.payload] };
     case DELETE_POST:
+      console.log("delete action payload");
       return {
         ...state,
         posts: state.posts.filter((post) => post.id !== action.payload),
@@ -25,8 +26,6 @@ const comments = (state = initialState, action) => {
       const existingPostId = state.comments.findIndex((item) => item.id === id);
       if (existingPostId !== -1) {
         const addComments = [...state.comments];
-        // console.log("hello");
-        // console.log(addComments[existingPostId].comments);
         addComments[existingPostId].comments.push(comment);
         return {
           ...state,
