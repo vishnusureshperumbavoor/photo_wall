@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addPost } from "../actions/posts";
+import { addPost } from "../reducers/posts";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Title from "./Title";
@@ -22,7 +22,7 @@ function AddPhoto() {
 
   return (
     <>
-      <Title/>
+      <Title />
       <div className="formdiv">
         <form action="" onSubmit={handleAddPost}>
           <input
