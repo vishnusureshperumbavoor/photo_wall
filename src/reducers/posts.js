@@ -1,4 +1,7 @@
-import { DELETE_POST, ADD_POST } from "../actions/posts";
+import {
+  DELETE_POST,
+  ADD_POST,
+} from "../actions/posts";
 import initialState from "../data/data";
 
 const postsReducer = (state = initialState, action) => {

@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./reducers/store";
 import Main from "./Components/Main";
 import AddPhoto from "./Components/AddPhoto";
+import Single from "./Components/Single";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/addphoto" element={<AddPhoto />} />
+            <Route path="/single/:id" element={<Single />} />
           </Routes>
         </Router>
       </Provider>

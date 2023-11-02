@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../actions/posts";
+import { Link } from "react-router-dom";
 
 function Photo({ post }) {
   const dispatch = useDispatch();
@@ -12,7 +13,9 @@ function Photo({ post }) {
   return (
     <div key={post.id}>
       <figure className="figure">
-        <img className="photo" src={post.imageLink} alt={post.description} />
+        <Link to={`/single/${post.id}`}>
+          <img className="photo" src={post.imageLink} alt={post.description} />
+        </Link>
         {post.id}
         <figcaption>
           <p>{post.description}</p>

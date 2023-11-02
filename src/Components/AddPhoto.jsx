@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { addPost } from "../actions/posts";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Title from "./Title";
 
 function AddPhoto() {
   const [formData, setFormData] = useState({});
@@ -21,7 +22,7 @@ function AddPhoto() {
 
   return (
     <>
-      <h1 onClick={() => navigate("/")}>PhotoWall</h1>
+      <Title/>
       <div className="formdiv">
         <form action="" onSubmit={handleAddPost}>
           <input
