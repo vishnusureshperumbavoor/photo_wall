@@ -3,6 +3,7 @@ import {
   ADD_POST,
 } from "../actions/posts";
 import initialState from "../data/data";
+import { combineReducers } from "redux";
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,5 +21,11 @@ const postsReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+const commentReducer = function comments(state=[],action){
+  return state;
+}
+
+
 
 export default postsReducer;

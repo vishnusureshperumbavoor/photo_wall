@@ -6,7 +6,7 @@ import PhotoWall from "./Photowall";
 function Main({ posts }) {
   return (
     <>
-      <Title/>
+      <Title />
       <PhotoWall posts={posts} />
     </>
   );

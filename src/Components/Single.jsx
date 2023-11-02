@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Title from "./Title";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import Photo from "./Photo";
+import Comments from "./Comments";
 
 function Single({posts}) {
   const params = useParams();
@@ -12,7 +14,10 @@ function Single({posts}) {
   return (
     <>
       <Title />
-      <div className="single-photo">Single</div>
+      <div className="single-photo">
+        <Photo post={post}/>
+        <Comments/>
+      </div>
     </>
   );
 }
