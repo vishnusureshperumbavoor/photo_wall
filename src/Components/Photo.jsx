@@ -45,7 +45,10 @@ function Photo({ post }) {
             Remove
           </button>
           <Link className="button" to={`/single/${post.id}`}>
-            {`${getCommentCount(post.id)}`}
+            <div className="comment-count">
+              <div className="speech-bubble"></div>
+              {`${getCommentCount(post.id)}`}
+            </div>
           </Link>
         </div>
       </figure>
