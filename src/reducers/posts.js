@@ -1,6 +1,10 @@
+import { ref, set } from "firebase/database";
+import { db } from "../database/config";
+
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
+export const UPDATE_DATABASE = "UPDATE_DATABASE";
 
 export const addPost = (post) => {
   return {
@@ -19,7 +23,14 @@ export const deletePost = (postId) => {
 export const addComment = (id, comment) => {
   return {
     type: ADD_COMMENT,
-    payload1 : id,
-    payload2 : comment,
+    payload1: id,
+    payload2: comment,
+  };
+};
+
+export const updateDatabase = (post) => {
+  return async (dispatch) => {
+    await set(ref(db, "posts/" + post.id), post);
+    dispatch(addPost(post));
   };
 };

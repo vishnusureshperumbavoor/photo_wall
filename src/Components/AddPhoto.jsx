@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addPost } from "../reducers/posts";
+import { addPost,updateDatabase } from "../reducers/posts";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Title from "./Title";
@@ -12,7 +12,9 @@ function AddPhoto() {
   const handleAddPost = (event) => {
     const newFormData = { ...formData, id: Math.floor(Date.now()) };
     event.preventDefault();
-    dispatch(addPost(newFormData));
+    //dispatch(addPost(newFormData));
+    const res = updateDatabase(newFormData)
+    console.log(res);
     navigate("/");
   };
 
