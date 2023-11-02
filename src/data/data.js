@@ -19,6 +19,16 @@ const initialState = {
         "https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/08/24/104670887-VacationExplainsTHUMBWEB.1910x1000.jpg",
     },
   ],
+  comments: [
+    {
+      id: 474848,
+      comments: ["vsp is cool", "vsp is clean"],
+    },
+    {
+      id: 854840,
+      comments: ["good photo"],
+    },
+  ],
 };
 
 export default initialState;

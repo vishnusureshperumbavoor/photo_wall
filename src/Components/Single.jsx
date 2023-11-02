@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Title from "./Title";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";

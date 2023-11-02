@@ -1,14 +1,58 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment } from "../reducers/posts";
+import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
 
 function Comments() {
+  let comments = useSelector((state) => state.comments.comments);
+  const params = useParams();
+  const postID = Number(params.id);
+  const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
+
+  const handleChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addComment(postID, comment));
+    setComment("");
+  };
+
+  const existingId = comments.filter((comment) => comment.id === postID);
+  if (existingId[0]) {
+    comments = existingId[0].comments;
+  }
+
   return (
-    <div className='comment'>
-        <form action="" className='comment-form'>
-            <input type="text" placeholder='comment' /><br /><br />
-            <input type="submit" hidden />
-        </form>
+    <div className="comment">
+      {existingId && existingId[0] && existingId[0].comments
+        ? comments.map((comment, index) => <p key={index}>{comment}</p>)
+        : null}
+      <form action="" className="comment-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="comment"
+          name="comment"
+          onChange={handleChange}
+          id="comment"
+          value={comment}
+        />
+        <br />
+        <br />
+        <input type="submit" hidden />
+      </form>
     </div>
-  )
+  );
 }
 
-export default Comments
+// const mapStateToProps = (state) => {
+//   return {
+//     comments: state.comments.comments,
+//   };
+// };
+
+// export default connect(mapStateToProps)(Comments);
+export default Comments;
