@@ -3,6 +3,8 @@ import initialState from "../data/data";
 import { combineReducers } from "redux";
 
 const posts = (state = initialState, action) => {
+  console.log("state");
+  console.log(state);
   switch (action.type) {
 
     case ADD_POST:
@@ -11,7 +13,7 @@ const posts = (state = initialState, action) => {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter((post) => post.id !== action.payload),
+        posts: state.filter((post) => post.id !== action.payload),
       };
 
     case LOAD_POSTS:

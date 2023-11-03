@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromDatabase, deletePost } from "../reducers/posts";
+import { deleteFromDatabase, deletePost ,fetchData} from "../reducers/posts";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -11,11 +11,9 @@ function Photo({ post }) {
   let comments = useSelector((state) => state.comments.comments);
 
   const handleDeletePost = (index,postId) => {
-    console.log(postId);
-    console.log(index);
     // dispatch(deletePost(postId));
     dispatch(deleteFromDatabase(index,postId))
-    navigate("/");
+    dispatch(fetchData());
   };
 
   let commentslength = 0;

@@ -64,14 +64,18 @@ export const loadPosts = (posts) => {
 };
 
 export const deleteFromDatabase = (index, id) => {
-  console.log("delete from database called");
   return async (dispatch) => {
     try {
       await remove(ref(db, `${POST_COLLECTION}/${index}`));
       console.log("deleted successfully from database");
-      dispatch(deletePost(id));
+      // try {
+      //   dispatch(deletePost(id));
+      //   console.log("deleted from local array");
+      // } catch (err) {
+      //   console.log("could not delete from local array");
+      // }
     } catch (err) {
-      console.log("deletion error");
+      console.log("deletion from db error");
     }
   };
 };
