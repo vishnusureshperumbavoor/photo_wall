@@ -1,12 +1,17 @@
-import { DELETE_POST, ADD_POST, ADD_COMMENT, LOAD_POSTS } from "./posts";
-import initialState from "../data/data";
+import {
+  DELETE_POST,
+  ADD_POST,
+  ADD_COMMENT,
+  LOAD_POSTS,
+  FETCH_SINGLE_POST,
+} from "./posts";
+import initialState from "../data/reduxStore";
 import { combineReducers } from "redux";
 
 const posts = (state = initialState, action) => {
   console.log("state");
   console.log(state);
   switch (action.type) {
-
     case ADD_POST:
       return { ...state, posts: [...state.posts, action.payload] };
 
@@ -17,7 +22,7 @@ const posts = (state = initialState, action) => {
       };
 
     case LOAD_POSTS:
-      return action.payload
+      return action.payload;
 
     default:
       return state;

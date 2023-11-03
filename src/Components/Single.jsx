@@ -7,14 +7,16 @@ import Comments from "./Comments";
 
 function Single() {
   let posts = useSelector((state) => state.posts);
+  console.log("singel"); 
+  console.log(posts);
   const params = useParams();
   let postID = Number(params.id);
-  const post = posts.find((post) => post.id === postID);
+  // const post = posts.find((post) => post.id === postID);
   return (
     <>
       <Title />
       <div className="single-photo">
-        <Photo post={post}/>
+        {/* <Photo post={post}/> */}
         <Comments/>
       </div>
     </>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../reducers/posts";
+import { addComment, addCommentToDatabase } from "../reducers/posts";
 import { useParams } from "react-router-dom";
 
 function Comments() {
@@ -16,7 +16,8 @@ function Comments() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addComment(postID, comment));
+    //dispatch(addComment(postID, comment));
+    dispatch(addCommentToDatabase(postID, comment));
     setComment("");
   };
 
@@ -46,12 +47,4 @@ function Comments() {
     </div>
   );
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     comments: state.comments.comments,
-//   };
-// };
-
-// export default connect(mapStateToProps)(Comments);
 export default Comments;

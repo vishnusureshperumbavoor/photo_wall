@@ -5,7 +5,9 @@ export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const LOAD_POSTS = "LOAD_PHOTOS";
-const POST_COLLECTION = "posts";
+export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST"
+export const POST_COLLECTION = "posts";
+export const COMMENT_COLLECTION = "comments";
 
 export const addPost = (post) => {
   return {
@@ -29,7 +31,7 @@ export const addComment = (id, comment) => {
   };
 };
 
-export const addToDatabase = (post) => {
+export const addPostToDatabase = (post) => {
   return async (dispatch) => {
     try {
       await set(push(ref(db, POST_COLLECTION)), post);
@@ -41,8 +43,19 @@ export const addToDatabase = (post) => {
   };
 };
 
+export const addCommentToDatabase = (index, comment) => {
+  return async (dispatch) => {
+    try {
+      await set(push(ref(db, COMMENT_COLLECTION)), comment);
+      console.log("comment added successfully");
+      // dispatch(addComment(index,comment));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const fetchData = () => {
-  console.log("fetchdata called");
   return async (dispatch) => {
     const snapshot = await get(ref(db, POST_COLLECTION));
     let posts = [];
