@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 function Photo({ post }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(post);
   let comments = useSelector((state) => state.comments.comments);
 
   const handleDeletePost = (index,postId) => {

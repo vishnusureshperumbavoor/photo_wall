@@ -1,15 +1,15 @@
 import React from "react";
 import Title from "./Title";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Photo from "./Photo";
 import Comments from "./Comments";
 
-function Single({posts}) {
+function Single() {
+  let posts = useSelector((state) => state.posts);
   const params = useParams();
-  let postID = params.id;
-  postID = Number(postID)
-  const post = posts.find((post)=>post.id===postID)
+  let postID = Number(params.id);
+  const post = posts.find((post) => post.id === postID);
   return (
     <>
       <Title />
@@ -21,10 +21,4 @@ function Single({posts}) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts.posts,
-  };
-};
-
-export default connect(mapStateToProps)(Single);
+export default Single;
