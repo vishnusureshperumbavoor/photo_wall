@@ -12,9 +12,7 @@ function AddPhoto() {
   const handleAddPost = (event) => {
     const newFormData = { ...formData, id: Math.floor(Date.now()) };
     event.preventDefault();
-    //dispatch(addPost(newFormData));
-    const res = updateDatabase(newFormData)
-    console.log(res);
+    dispatch(updateDatabase(newFormData))
     navigate("/");
   };
 
