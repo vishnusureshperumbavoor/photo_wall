@@ -41,6 +41,7 @@ export const updateDatabase = (post) => {
 };
 
 export const fetchData = () => {
+  console.log("fetchdata called");
   return async (dispatch) => {
     const snapshot = await get(ref(db, POST_COLLECTION));
     // console.log("snapshot");

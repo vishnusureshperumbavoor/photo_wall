@@ -23,9 +23,7 @@ function Photowall() {
         Add Image
       </button>
       <div className="photo-grid">
-        {posts
-          ? posts.map((post, index) => <Photo key={index} post={post} />)
-          : null}
+        {Array.isArray(posts) && posts.map((post, index) => <Photo key={index} post={post} />)}
       </div>
     </div>
   );
