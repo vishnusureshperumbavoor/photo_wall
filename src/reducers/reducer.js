@@ -1,4 +1,4 @@
-import { DELETE_POST, ADD_POST, ADD_COMMENT } from "./posts";
+import { DELETE_POST, ADD_POST, ADD_COMMENT, UPDATE_DATABASE } from "./posts";
 import initialState from "../data/data";
 import { combineReducers } from "redux";
 
@@ -12,15 +12,15 @@ const posts = (state = initialState, action) => {
         ...state,
         posts: state.posts.filter((post) => post.id !== action.payload),
       };
+
     default:
       return state;
   }
 };
 
 const comments = (state = initialState, action) => {
-  const id= action.payload1;
-  const comment = action.payload2;
-  console.log(action);
+  const id= action.payloadId;
+  const comment = action.payloadComment;
   switch (action.type) {
     case ADD_COMMENT:
       const existingPostId = state.comments.findIndex((item) => item.id === id);
