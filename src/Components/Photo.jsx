@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromDatabae, deletePost } from "../reducers/posts";
+import { deleteFromDatabase, deletePost } from "../reducers/posts";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -10,10 +10,11 @@ function Photo({ post }) {
   console.log(post);
   let comments = useSelector((state) => state.comments.comments);
 
-  const handleDeletePost = (postId) => {
+  const handleDeletePost = (index,postId) => {
     console.log(postId);
+    console.log(index);
     // dispatch(deletePost(postId));
-    dispatch(deleteFromDatabae(postId))
+    dispatch(deleteFromDatabase(index,postId))
     navigate("/");
   };
 
@@ -33,7 +34,7 @@ function Photo({ post }) {
         <Link to={`/single/${post.id}`}>
           <img className="photo" src={post.imageLink} alt={post.description} />
         </Link>
-        {post.id}
+        {post.id} <br></br> {post.index}
         <figcaption>
           <p>{post.description}</p>
         </figcaption>
@@ -41,7 +42,7 @@ function Photo({ post }) {
           <button
             className="remove-button"
             onClick={() => {
-              handleDeletePost(post.id);
+              handleDeletePost(post.index,post.id);
             }}
           >
             Remove

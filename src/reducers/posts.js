@@ -29,10 +29,11 @@ export const addComment = (id, comment) => {
   };
 };
 
-export const updateDatabase = (post) => {
+export const addToDatabase = (post) => {
   return async (dispatch) => {
     try {
       await set(push(ref(db, POST_COLLECTION)), post);
+      console.log("added successfully");
       dispatch(addPost(post));
     } catch (err) {
       console.log(err);
@@ -44,22 +45,14 @@ export const fetchData = () => {
   console.log("fetchdata called");
   return async (dispatch) => {
     const snapshot = await get(ref(db, POST_COLLECTION));
-    // console.log("snapshot");
-    // console.log(snapshot.val());
-    // console.log("Object.values(snapshot.val())")
-    // console.log(Object.values(snapshot.val()))
     let posts = [];
-    //posts.push(Object.values(snapshot.val()));
     posts = snapshot.val();
     posts = Object.keys(posts).map((index) => ({
       index,
       ...posts[index],
     }));
     posts.push(posts);
-
-    // posts.forEach((element)=>{
     dispatch(loadPosts(posts));
-    // })
   };
 };
 
@@ -70,10 +63,15 @@ export const loadPosts = (posts) => {
   };
 };
 
-export const deleteFromDatabae = (id) => {
+export const deleteFromDatabase = (index, id) => {
   console.log("delete from database called");
   return async (dispatch) => {
-    await remove(ref(db, `${POST_COLLECTION}/${id}`));
-    // dispatch(deletePost(index));
+    try {
+      await remove(ref(db, `${POST_COLLECTION}/${index}`));
+      console.log("deleted successfully from database");
+      dispatch(deletePost(id));
+    } catch (err) {
+      console.log("deletion error");
+    }
   };
 };
