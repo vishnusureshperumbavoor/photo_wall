@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteFromDatabase,
-  deletePost,
+  deletePostFromReduxStore,
   fetchDataFromDatabase,
   fetchDataFromReduxStore,
 } from "../reducers/actions";
@@ -15,10 +15,7 @@ function Photo({ post }) {
   let comments = useSelector((state) => state.comments.comments);
 
   const handleDeletePost = (index, postId) => {
-    // dispatch(deletePost(postId));
-    dispatch(deleteFromDatabase(index, postId));
-    //dispatch(fetchDataFromDatabase());
-    dispatch(fetchDataFromReduxStore());
+    dispatch(deletePostFromReduxStore(postId));
   };
 
   let commentslength = 0;

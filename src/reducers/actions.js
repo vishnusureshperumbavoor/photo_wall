@@ -16,7 +16,7 @@ export const addPostToReduxStore = (post) => {
   };
 };
 
-export const deletePost = (postId) => {
+export const deletePostFromReduxStore = (postId) => {
   return {
     type: DELETE_POST,
     payload: postId,

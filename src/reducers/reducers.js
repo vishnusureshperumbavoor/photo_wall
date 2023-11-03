@@ -11,15 +11,13 @@ export const postReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case ADD_POST:
-      console.log("initial state checking");
-      console.log(state);
-      console.log(state.posts);
       return { ...state, posts: [...state.posts, action.payload] };
 
     case DELETE_POST:
+      let posts = state.posts
       return {
         ...state,
-        posts: state.filter((post) => post.id !== action.payload),
+        posts: posts.filter((post) => post.id !== action.payload),
       };
 
     case LOAD_POSTS:

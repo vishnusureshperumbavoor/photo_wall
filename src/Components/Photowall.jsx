@@ -5,15 +5,12 @@ import { fetchData, fetchDataFromReduxStore } from "../reducers/actions";
 import Photo from "./Photo";
 
 function Photowall() {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   let state = useSelector((state) => state.posts);
   console.log("state deii");
   console.log(state);
   let newstate = state.posts;
-  // useEffect(() => {
-  //   dispatch(fetchDataFromReduxStore());
-  // }, []);
 
   return (
     <div className="photowall">
