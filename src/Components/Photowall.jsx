@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchData } from "../reducers/posts";
+import { fetchData } from "../reducers/actions";
 import Photo from "./Photo";
 
 function Photowall() {
@@ -23,7 +23,8 @@ function Photowall() {
         Add Image
       </button>
       <div className="photo-grid">
-        {Array.isArray(posts) && posts.map((post, index) => <Photo key={index} post={post} />)}
+        {Array.isArray(posts) &&
+          posts.map((post, index) => <Photo key={index} post={post} />)}
       </div>
     </div>
   );

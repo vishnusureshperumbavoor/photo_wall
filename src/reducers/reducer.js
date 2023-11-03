@@ -4,8 +4,8 @@ import {
   ADD_COMMENT,
   LOAD_POSTS,
   FETCH_SINGLE_POST,
-} from "./posts";
-import initialState from "../data/reduxStore";
+} from "./actions";
+import { initialState } from "../data/data";
 import { combineReducers } from "redux";
 
 const posts = (state = initialState, action) => {
