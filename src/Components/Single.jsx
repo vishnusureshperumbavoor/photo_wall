@@ -10,7 +10,6 @@ function Single({posts}) {
   let postID = params.id;
   postID = Number(postID)
   const post = posts.find((post)=>post.id===postID)
-  console.log(post);
   return (
     <>
       <Title />

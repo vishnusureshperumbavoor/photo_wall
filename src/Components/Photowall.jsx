@@ -1,8 +1,11 @@
 import React from "react";
 import Photo from "./Photo";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function Photowall({ posts }) {
+function Photowall() {
+  let posts = useSelector((state) => state.posts.posts);
+  console.log(posts);
   const navigate = useNavigate();
   return (
     <div className="photowall">
