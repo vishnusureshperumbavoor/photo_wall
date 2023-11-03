@@ -17,13 +17,13 @@ function Photo({ post }) {
 
   let commentslength = 0;
 
-  function getCommentCount(postId) {
-    let matchingComments = comments.filter((comment) => comment.id === postId);
-    if (matchingComments.length > 0) {
-      commentslength = matchingComments[0].comments.length;
-    }
-    return commentslength;
-  }
+  // function getCommentCount(postId) {
+  //   let matchingComments = comments.filter((comment) => comment.id === postId);
+  //   if (matchingComments.length > 0) {
+  //     commentslength = matchingComments[0].comments.length;
+  //   }
+  //   return commentslength;
+  // }
 
   return (
     <div key={post.id}>
@@ -47,7 +47,7 @@ function Photo({ post }) {
           <Link className="button" to={`/single/${post.id}`}>
             <div className="comment-count">
               <div className="speech-bubble"></div>
-              {`${getCommentCount(post.id)}`}
+              {/* {`${getCommentCount(post.id)}`} */}
             </div>
           </Link>
         </div>

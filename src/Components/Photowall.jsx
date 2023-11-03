@@ -1,12 +1,19 @@
-import React from "react";
-import Photo from "./Photo";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../reducers/posts";
+import Photo from "./Photo";
 
 function Photowall() {
-  let posts = useSelector((state) => state.posts.posts);
-  console.log(posts);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  let posts = useSelector((state) => state.posts);
+  posts = posts[0];
+  console.log(posts);
+  useEffect(() => {
+    dispatch(fetchData());
+  }, []);
+
   return (
     <div className="photowall">
       <button
@@ -18,11 +25,8 @@ function Photowall() {
       </button>
       <div className="photo-grid">
         {posts
-          .slice()
-          .sort((a, b) => b.id - a.id)
-          .map((post, index) => (
-            <Photo key={index} post={post} />
-          ))}
+          ? posts.map((post, index) => <Photo key={index} post={post} />)
+          : null}
       </div>
     </div>
   );

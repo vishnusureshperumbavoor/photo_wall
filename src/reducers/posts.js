@@ -1,4 +1,4 @@
-import { ref, push, set } from "firebase/database";
+import { ref, push, set, get ,remove } from "firebase/database";
 import { db } from "../database/config";
 
 export const ADD_POST = "ADD_POST";
@@ -41,17 +41,17 @@ export const updateDatabase = (post) => {
 };
 
 export const fetchData = () => {
-  return (dispatch) => {
-    return db
-      .ref(POST_COLLECTION)
-      .once("value")
-      .then((res) => {
-        let posts = [];
-        res.foreach((res) => {
-          posts.push(res.val());
-        });
-        dispatch(loadPosts(posts));
-      });
+  return async (dispatch) => {
+    const snapshot = await get(ref(db, POST_COLLECTION));
+    // console.log("snapshot");
+    // console.log(snapshot.val());
+    // console.log("Object.values(snapshot.val())")
+    // console.log(Object.values(snapshot.val()))
+    let posts = [];
+    posts.push(Object.values(snapshot.val()));
+    // posts.forEach((element)=>{
+      dispatch(loadPosts(posts));
+    // })
   };
 };
 
@@ -61,3 +61,11 @@ export const loadPosts = (posts) => {
     payload: posts,
   };
 };
+
+export const deleteFromDatabae = (index,id)=>{
+  console.log("delete from database called");
+  return async (dispatch)=>{
+    await remove(ref(db, `${POST_COLLECTION}/${id}`));
+    dispatch(deletePost(index));
+  }
+}

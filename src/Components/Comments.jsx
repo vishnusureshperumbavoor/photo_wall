@@ -20,16 +20,16 @@ function Comments() {
     setComment("");
   };
 
-  const existingId = comments.filter((comment) => comment.id === postID);
-  if (existingId[0]) {
-    comments = existingId[0].comments;
-  }
+  // const existingId = comments.filter((comment) => comment.id === postID);
+  // if (existingId[0]) {
+  //   comments = existingId[0].comments;
+  // }
 
   return (
     <div className="comment">
-      {existingId && existingId[0] && existingId[0].comments
+      {/* {existingId && existingId[0] && existingId[0].comments
         ? comments.map((comment, index) => <p key={index}>{comment}</p>)
-        : null}
+        : null} */}
       <form action="" className="comment-form" onSubmit={handleSubmit}>
         <input
           type="text"
