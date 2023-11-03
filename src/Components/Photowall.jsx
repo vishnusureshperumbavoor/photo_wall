@@ -8,7 +8,6 @@ function Photowall() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let posts = useSelector((state) => state.posts);
-  posts = posts[0];
   console.log(posts);
   useEffect(() => {
     dispatch(fetchData());

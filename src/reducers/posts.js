@@ -1,4 +1,4 @@
-import { ref, push, set, get ,remove } from "firebase/database";
+import { ref, push, set, get, remove } from "firebase/database";
 import { db } from "../database/config";
 
 export const ADD_POST = "ADD_POST";
@@ -48,9 +48,16 @@ export const fetchData = () => {
     // console.log("Object.values(snapshot.val())")
     // console.log(Object.values(snapshot.val()))
     let posts = [];
-    posts.push(Object.values(snapshot.val()));
+    //posts.push(Object.values(snapshot.val()));
+    posts = snapshot.val();
+    posts = Object.keys(posts).map((index) => ({
+      index,
+      ...posts[index],
+    }));
+    posts.push(posts);
+
     // posts.forEach((element)=>{
-      dispatch(loadPosts(posts));
+    dispatch(loadPosts(posts));
     // })
   };
 };
@@ -62,10 +69,10 @@ export const loadPosts = (posts) => {
   };
 };
 
-export const deleteFromDatabae = (index,id)=>{
+export const deleteFromDatabae = (id) => {
   console.log("delete from database called");
-  return async (dispatch)=>{
+  return async (dispatch) => {
     await remove(ref(db, `${POST_COLLECTION}/${id}`));
-    dispatch(deletePost(index));
-  }
-}
+    // dispatch(deletePost(index));
+  };
+};

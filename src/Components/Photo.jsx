@@ -1,17 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost } from "../reducers/posts";
+import { deleteFromDatabae, deletePost } from "../reducers/posts";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Photo({ post }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  console.log(post);
   let comments = useSelector((state) => state.comments.comments);
 
   const handleDeletePost = (postId) => {
     console.log(postId);
-    dispatch(deletePost(postId));
+    // dispatch(deletePost(postId));
+    dispatch(deleteFromDatabae(postId))
     navigate("/");
   };
 
