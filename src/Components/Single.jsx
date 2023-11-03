@@ -11,6 +11,7 @@ function Single() {
   const params = useParams();
   let postID = Number(params.id);
   let post = posts.find((post) => post.id === postID);
+  
   return (
     <>
       <Title />
