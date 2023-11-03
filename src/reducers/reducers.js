@@ -6,13 +6,14 @@ import {
   FETCH_SINGLE_POST,
 } from "./actions";
 import { initialState } from "../data/data";
-import { combineReducers } from "redux";
 
-const posts = (state = initialState, action) => {
-  console.log("state");
-  console.log(state);
+export const postReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case ADD_POST:
+      console.log("initial state checking");
+      console.log(state);
+      console.log(state.posts);
       return { ...state, posts: [...state.posts, action.payload] };
 
     case DELETE_POST:
@@ -29,10 +30,11 @@ const posts = (state = initialState, action) => {
   }
 };
 
-const comments = (state = initialState, action) => {
+export const commentReducer = (state = initialState, action) => {
   const id = action.payloadId;
   const comment = action.payloadComment;
   switch (action.type) {
+
     case ADD_COMMENT:
       const existingPostId = state.comments.findIndex((item) => item.id === id);
       if (existingPostId !== -1) {
@@ -48,11 +50,8 @@ const comments = (state = initialState, action) => {
           comments: [...state.comments, { id, comments: [comment] }],
         };
       }
+
     default:
       return state;
   }
 };
-
-const rootReducer = combineReducers({ posts, comments });
-
-export default rootReducer;
