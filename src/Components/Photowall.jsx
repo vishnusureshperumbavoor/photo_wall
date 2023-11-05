@@ -1,16 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData, fetchDataFromReduxStore } from "../reducers/actions";
 import Photo from "./Photo";
 
 function Photowall() {
+  const [newState, setNewState] = useState([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let state = useSelector((state) => state.posts);
-  console.log("state deii");
+  useEffect(() => {
+    setNewState(state.posts);
+  }, []);
+  console.log("hello state");
   console.log(state);
-  let newstate = state.posts;
 
   return (
     <div className="photowall">
@@ -22,8 +26,9 @@ function Photowall() {
         Add Image
       </button>
       <div className="photo-grid">
-        {
-          newstate.map((post, index) => <Photo key={index} post={post} />)}
+        {newState.map((post, index) => (
+          <Photo key={index} post={post} />
+        ))}
       </div>
     </div>
   );

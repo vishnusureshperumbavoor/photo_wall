@@ -16,6 +16,7 @@ function Photo({ post }) {
 
   const handleDeletePost = (index, postId) => {
     dispatch(deletePostFromReduxStore(postId));
+    //navigate("/");
   };
 
   let commentslength = 0;
