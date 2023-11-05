@@ -9,20 +9,16 @@ import { initialState } from "../data/data";
 
 export const postReducer = (state = initialState, action) => {
   switch (action.type) {
-
     case ADD_POST:
       return { ...state, posts: [...state.posts, action.payload] };
-
     case DELETE_POST:
       let posts = state.posts
       return {
         ...state,
         posts: posts.filter((post) => post.id !== action.payload),
       };
-
     case LOAD_POSTS:
       return action.payload;
-
     default:
       return state;
   }

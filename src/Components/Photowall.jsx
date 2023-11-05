@@ -10,9 +10,17 @@ import Photo from "./Photo";
 function Photowall() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  dispatch(fetchDataFromDatabase());
   const state = useSelector((state) => state.posts);
-  let sortedPosts = state.slice().sort((a, b) => b.id - a.id);
+
+  useEffect(() => {
+    dispatch(fetchDataFromDatabase());
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log("state");
+    console.log(state);
+  }, [state]);
+  //let sortedPosts = posts.sort((a, b) => b.id - a.id);
 
   return (
     <div className="photowall">
@@ -24,8 +32,9 @@ function Photowall() {
         Add Image
       </button>
       <div className="photo-grid">
-        {sortedPosts.length > 0 &&
-          sortedPosts.map((post, index) => <Photo key={index} post={post} />)}
+        {/* {state.map((post, index) => (
+          <Photo key={index} post={post} />
+        ))} */}
       </div>
     </div>
   );

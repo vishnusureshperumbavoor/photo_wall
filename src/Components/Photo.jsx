@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteFromDatabase,
   deletePostFromReduxStore,
-  fetchDataFromDatabase,
-  fetchDataFromReduxStore,
 } from "../reducers/actions";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

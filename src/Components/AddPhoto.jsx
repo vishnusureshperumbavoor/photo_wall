@@ -10,7 +10,7 @@ function AddPhoto() {
   const navigate = useNavigate();
 
   const handleAddPost = (event) => {
-    const newFormData = { ...formData, id: Math.floor(Date.now()) };
+    const newFormData = { ...formData, date: Math.floor(Date.now()) };
     event.preventDefault();
     //dispatch(addPostToReduxStore(newFormData))
     dispatch(addPostToDatabase(newFormData));
