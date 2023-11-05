@@ -1,5 +1,5 @@
-export const initialState = {
-  posts: [
+export const initialState = []
+//   posts: [
     // {
     //   date: 1698905587421,
     //   description: "beautiful landscape",
@@ -18,6 +18,5 @@ export const initialState = {
     //   imageLink:
     //     "https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2017/08/24/104670887-VacationExplainsTHUMBWEB.1910x1000.jpg",
     // },
-  ],
-  comments: [],
-};
+//   ],
+//   comments: [],

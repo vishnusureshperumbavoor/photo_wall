@@ -10,16 +10,22 @@ import Photo from "./Photo";
 function Photowall() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const state = useSelector((state) => state.posts);
-
+  let state = useSelector((state) => state);
+  state = state.posts;
+  console.log("state = ");
+  console.log(state.posts);
   useEffect(() => {
-    dispatch(fetchDataFromDatabase());
+      try {
+        dispatch(fetchDataFromDatabase());
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log("state");
-    console.log(state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log("state");
+  //   console.log(state);
+  // }, [state]);
   //let sortedPosts = posts.sort((a, b) => b.id - a.id);
 
   return (
@@ -32,9 +38,9 @@ function Photowall() {
         Add Image
       </button>
       <div className="photo-grid">
-        {/* {state.map((post, index) => (
+        {state.map((post, index) => (
           <Photo key={index} post={post} />
-        ))} */}
+        ))}
       </div>
     </div>
   );
