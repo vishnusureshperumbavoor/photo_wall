@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchData, fetchDataFromReduxStore } from "../reducers/actions";
+import {
+  fetchDataFromDatabase,
+  fetchDataFromReduxStore,
+} from "../reducers/actions";
 import Photo from "./Photo";
 
 function Photowall() {
-  const [newState, setNewState] = useState([]);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let state = useSelector((state) => state.posts);
-  useEffect(() => {
-    setNewState(state.posts);
-  }, []);
-  console.log("hello state");
-  console.log(state);
+  dispatch(fetchDataFromDatabase());
+  const state = useSelector((state) => state.posts);
+  let sortedPosts = state.slice().sort((a, b) => b.id - a.id);
 
   return (
     <div className="photowall">
@@ -26,9 +24,8 @@ function Photowall() {
         Add Image
       </button>
       <div className="photo-grid">
-        {newState.map((post, index) => (
-          <Photo key={index} post={post} />
-        ))}
+        {sortedPosts.length > 0 &&
+          sortedPosts.map((post, index) => <Photo key={index} post={post} />)}
       </div>
     </div>
   );

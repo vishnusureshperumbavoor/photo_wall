@@ -5,7 +5,7 @@ export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const LOAD_POSTS = "LOAD_POSTS";
-export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST"
+export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
 export const POST_COLLECTION = "posts";
 export const COMMENT_COLLECTION = "comments";
 
@@ -35,7 +35,7 @@ export const addPostToDatabase = (post) => {
   return async (dispatch) => {
     try {
       await set(push(ref(db, POST_COLLECTION)), post);
-      console.log("added successfully");
+      console.log("added " + post.description + " successfully to database");
       dispatch(addPostToReduxStore(post));
     } catch (err) {
       console.log(err);
@@ -57,17 +57,24 @@ export const addCommentToDatabase = (index, comment) => {
 
 export const fetchDataFromDatabase = () => {
   return async (dispatch) => {
-    const snapshot = await get(ref(db, POST_COLLECTION));
-    let posts = [];
-    posts = snapshot.val();
-    posts = Object.keys(posts).map((index) => ({
-      index,
-      ...posts[index],
-    }));
-    posts.push(posts);
-    dispatch(fetchDataFromReduxStore(posts));
+    try {
+      const snapshot = await get(ref(db, POST_COLLECTION));
+      if (snapshot.exists()) {
+        const postsData = snapshot.val();
+        const posts = Object.keys(postsData).map((index) => ({
+          index,
+          ...postsData[index],
+        }));
+        dispatch(fetchDataFromReduxStore(posts));
+      } else {
+        console.log("No data found in Firebase.");
+      }
+    } catch (err) {
+      console.error("Error fetching data from Firebase:", err);
+    }
   };
 };
+
 
 export const fetchDataFromReduxStore = (posts) => {
   return {
@@ -80,13 +87,13 @@ export const deleteFromDatabase = (index, id) => {
   return async (dispatch) => {
     try {
       await remove(ref(db, `${POST_COLLECTION}/${index}`));
-      console.log("deleted successfully from database");
-      // try {
-      //   dispatch(deletePost(id));
-      //   console.log("deleted from redux store");
-      // } catch (err) {
-      //   console.log("could not delete redux store");
-      // }
+      console.log("deleted " + index + " successfully from database");
+      try {
+        dispatch(deletePostFromReduxStore(id));
+        console.log("deleted " + id + " from redux store");
+      } catch (err) {
+        console.log("could not delete redux store");
+      }
     } catch (err) {
       console.log("deletion from db error");
     }

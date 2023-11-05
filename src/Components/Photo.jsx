@@ -15,7 +15,8 @@ function Photo({ post }) {
   let comments = useSelector((state) => state.comments.comments);
 
   const handleDeletePost = (index, postId) => {
-    dispatch(deletePostFromReduxStore(postId));
+    //dispatch(deletePostFromReduxStore(postId));
+    dispatch(deleteFromDatabase(index,postId))
     //navigate("/");
   };
 
