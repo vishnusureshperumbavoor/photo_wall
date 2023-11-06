@@ -8,16 +8,14 @@ import {
 import { initialState } from "../data/data";
 
 export const postReducer = (state = initialState, action) => {
-  console.log(state);
   switch (action.type) {
     case ADD_POST:
-      return { ...state, posts: [...state.posts, action.payload] };
+      return [...state, action.payload];
     case DELETE_POST:
-      let posts = state.posts
-      return {
-        ...state,
-        posts: posts.filter((post) => post.index !== action.payload),
-      };
+      return [
+        ...state.slice(0, action.payload),
+        ...state.slice(action.payload + 1),
+      ];
     case LOAD_POSTS:
       return action.payload;
     default:
@@ -29,7 +27,6 @@ export const commentReducer = (state = initialState, action) => {
   const id = action.payloadId;
   const comment = action.payloadComment;
   switch (action.type) {
-
     case ADD_COMMENT:
       const existingPostId = state.comments.findIndex((item) => item.id === id);
       if (existingPostId !== -1) {

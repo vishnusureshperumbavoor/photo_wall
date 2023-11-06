@@ -10,17 +10,13 @@ import Photo from "./Photo";
 function Photowall() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let state = useSelector((state) => state);
-  console.log(state);
-  let posts = state.posts
-  useEffect(() => {
-    try {
-      dispatch(fetchDataFromDatabase());
-    } catch (err) {
-      console.error("Error fetching data:", err);
-    }
-  }, [dispatch]);
-  if(posts.length>0){
+  try {
+    dispatch(fetchDataFromDatabase());
+  } catch (err) {
+    console.error("Error fetching data:", err);
+  }
+  let posts = useSelector((state) => state.posts);
+  if (posts.length > 0) {
     posts = posts.sort((a, b) => b.date - a.date);
   }
 

@@ -14,8 +14,9 @@ function Photo({ post }) {
 
   const handleDeletePost = (index, postId) => {
     //dispatch(deletePostFromReduxStore(postId));
-    dispatch(deleteFromDatabase(index))
-    //navigate("/");
+    dispatch(deleteFromDatabase(index));
+    navigate("/");
+    // window.location.reload()
   };
 
   let commentslength = 0;
