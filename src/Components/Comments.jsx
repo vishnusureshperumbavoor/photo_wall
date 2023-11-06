@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, addCommentToDatabase } from "../reducers/actions";
+import { addCommentToReduxStore, addCommentToDatabase } from "../reducers/actions";
 import { useParams } from "react-router-dom";
 
 function Comments() {
-  let comments = useSelector((state) => state.comments.comments);
+  let comments = useSelector((state) => state.comments);
   const params = useParams();
   const postID = Number(params.id);
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function Comments() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addComment(postID, comment));
+    //dispatch(addCommentToReduxStore(postID, comment));
     dispatch(addCommentToDatabase(postID, comment));
     setComment("");
   };

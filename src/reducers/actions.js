@@ -16,14 +16,14 @@ export const addPostToReduxStore = (post) => {
   };
 };
 
-export const deletePostFromReduxStore = (postId) => {
+export const deletePostFromReduxStore = (index) => {
   return {
     type: DELETE_POST,
-    payload: postId,
+    payload: index,
   };
 };
 
-export const addComment = (id, comment) => {
+export const addCommentToReduxStore = (id, comment) => {
   return {
     type: ADD_COMMENT,
     payloadId: id,
@@ -92,16 +92,16 @@ export const fetchDataFromReduxStore = (posts) => {
   };
 };
 
-export const deleteFromDatabase = (index, id) => {
+export const deleteFromDatabase = (index) => {
   return async (dispatch) => {
     try {
       await remove(ref(db, `${POST_COLLECTION}/${index}`));
       console.log("deleted " + index + " successfully from database");
       try {
-        dispatch(deletePostFromReduxStore(id));
-        console.log("deleted " + id + " from redux store");
+        dispatch(deletePostFromReduxStore(index));
+        console.log("deleted " + index + " from redux store");
       } catch (err) {
-        console.log("could not delete redux store");
+        console.log("could not delete " + index + " from redux store");
       }
     } catch (err) {
       console.log("deletion from db error");

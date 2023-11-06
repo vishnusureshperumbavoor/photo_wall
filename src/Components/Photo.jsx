@@ -8,15 +8,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Photo({ post }) {
-  console.log("sex");
-  console.log(post);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let comments = useSelector((state) => state.comments);
 
   const handleDeletePost = (index, postId) => {
     //dispatch(deletePostFromReduxStore(postId));
-    dispatch(deleteFromDatabase(index,postId))
+    dispatch(deleteFromDatabase(index))
     //navigate("/");
   };
 
@@ -44,7 +42,7 @@ function Photo({ post }) {
           <button
             className="remove-button"
             onClick={() => {
-              handleDeletePost(post.index, post.id);
+              handleDeletePost(post.index);
             }}
           >
             Remove

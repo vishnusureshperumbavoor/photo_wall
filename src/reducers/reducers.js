@@ -8,6 +8,7 @@ import {
 import { initialState } from "../data/data";
 
 export const postReducer = (state = initialState, action) => {
+  console.log(state);
   switch (action.type) {
     case ADD_POST:
       return { ...state, posts: [...state.posts, action.payload] };
@@ -15,7 +16,7 @@ export const postReducer = (state = initialState, action) => {
       let posts = state.posts
       return {
         ...state,
-        posts: posts.filter((post) => post.id !== action.payload),
+        posts: posts.filter((post) => post.index !== action.payload),
       };
     case LOAD_POSTS:
       return action.payload;

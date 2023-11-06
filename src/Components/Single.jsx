@@ -8,11 +8,11 @@ import NotFound from "./NotFound";
 
 function Single() {
   const navigate = useNavigate();
-  let store = useSelector((state) => state.posts);
-  let posts = store.posts;
+  let posts = useSelector((state) => state.posts);
+  console.log(posts);
   const params = useParams();
-  let postID = Number(params.id);
-  let post = posts.find((post) => post.id === postID);
+  let postID = params.id
+  let post = posts.find((post) => post.index === postID);
   console.log(post);
   if(!post){
     return <NotFound/>
