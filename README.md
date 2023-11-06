@@ -14,6 +14,11 @@
 - React Redux
 - Firebase (Database)
 
+## Features
+- Add photos
+- Add comments
+- Delete photos
+
 ## How to set up
 
 Clone the repository
