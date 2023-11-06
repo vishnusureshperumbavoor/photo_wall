@@ -27,7 +27,7 @@ function Comments() {
 
   return (
     <div className="comment">
-      {existingIdComment.map((comment, index) => (
+      {existingIdComment && existingIdComment.map((comment, index) => (
         <p key={index}>{comment}</p>
       ))}
       <form action="" className="comment-form" onSubmit={handleSubmit}>
