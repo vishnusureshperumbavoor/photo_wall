@@ -16,18 +16,7 @@ function Photo({ post }) {
     //dispatch(deletePostFromReduxStore(postId));
     dispatch(deleteFromDatabase(index));
     navigate("/");
-    // window.location.reload()
   };
-
-  let commentslength = 0;
-
-  // function getCommentCount(postId) {
-  //   let matchingComments = comments.filter((comment) => comment.id === postId);
-  //   if (matchingComments.length > 0) {
-  //     commentslength = matchingComments[0].comments.length;
-  //   }
-  //   return commentslength;
-  // }
 
   return (
     <div key={post.index}>
@@ -48,10 +37,10 @@ function Photo({ post }) {
           >
             Remove
           </button>
-          <Link className="button" to={`/single/${post.id}`}>
+          <Link className="button" to={`/single/${post.index}`}>
             <div className="comment-count">
               <div className="speech-bubble"></div>
-              {/* {`${getCommentCount(post.id)}`} */}
+              {comments[post.index].length}
             </div>
           </Link>
         </div>
