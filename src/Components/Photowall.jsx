@@ -7,7 +7,7 @@ import {
 } from "../reducers/actions";
 import Photo from "./Photo";
 
-function Photowall() {
+function Photowall({posts}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -18,7 +18,7 @@ function Photowall() {
     }
   }, [dispatch]);
 
-  let posts = useSelector((state) => state.posts);
+  
   if (posts.length > 0) {
     posts = posts.sort((a, b) => b.date - a.date);
   }

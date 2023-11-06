@@ -3,6 +3,7 @@ import { db } from "../database/config";
 
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
+export const DELETE_COMMENT = "DELETE_COMMENT"
 export const ADD_COMMENT = "ADD_COMMENT";
 export const FETCH_POSTS = "FETCH_POSTS";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
@@ -120,11 +121,41 @@ export const deletePostFromDatabase = (index) => {
       try {
         dispatch(deletePostFromReduxStore(index));
         console.log("deleted " + index + " from redux store");
+        try{
+          dispatch(deleteCommentsFromDatabase(index))
+          console.log("deleted comments from database");
+        }catch(err){
+          console.log("error deleting comments from database");
+        }
       } catch (err) {
         console.log("could not delete " + index + " from redux store");
       }
     } catch (err) {
       console.log("deletion from db error");
     }
+  };
+};
+
+export const deleteCommentsFromDatabase = (index) => {
+  return async (dispatch) => {
+    try {
+      await remove(ref(db, `${COMMENT_COLLECTION}/${index}`));
+      console.log("deleted " + index + "comments from database");
+      try {
+        dispatch(deleteCommentsFromReduxStore(index));
+        console.log("deleted " + index + " comments from redux store");
+      } catch (err) {
+        console.log("could not delete " + index + " comments from redux store");
+      }
+    } catch (err) {
+      console.log("deletion from db error");
+    }
+  };
+};
+
+export const deleteCommentsFromReduxStore = (index) => {
+  return {
+    type: DELETE_COMMENT,
+    payload: index,
   };
 };
