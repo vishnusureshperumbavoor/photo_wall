@@ -23,14 +23,6 @@ export const deletePostFromReduxStore = (index) => {
   };
 };
 
-export const addCommentToReduxStore = (id, comment) => {
-  return {
-    type: ADD_COMMENT,
-    payloadId: id,
-    payloadComment: comment,
-  };
-};
-
 export const addPostToDatabase = (post) => {
   return async (dispatch) => {
     try {
@@ -43,12 +35,20 @@ export const addPostToDatabase = (post) => {
   };
 };
 
+export const addCommentToReduxStore = (id, comment) => {
+  return {
+    type: ADD_COMMENT,
+    payloadId: id,
+    payloadComment: comment,
+  };
+};
+
 export const addCommentToDatabase = (index, comment) => {
   return async (dispatch) => {
     try {
-      await set(push(ref(db, COMMENT_COLLECTION)), comment);
-      console.log("comment added successfully");
-      // dispatch(addComment(index,comment));
+      console.log(COMMENT_COLLECTION + "/" + index);
+      await set(push(ref(db, COMMENT_COLLECTION + "/" + index)), comment);
+      dispatch(addCommentToReduxStore(index, comment));
     } catch (err) {
       console.log(err);
     }
@@ -83,7 +83,6 @@ export const fetchDataFromDatabase = () => {
     }
   };
 };
-
 
 export const fetchDataFromReduxStore = (posts) => {
   return {

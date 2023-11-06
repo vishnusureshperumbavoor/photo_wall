@@ -4,9 +4,12 @@ import { addCommentToReduxStore, addCommentToDatabase } from "../reducers/action
 import { useParams } from "react-router-dom";
 
 function Comments() {
+  console.log("current state");
   let comments = useSelector((state) => state.comments);
+  console.log(comments);
   const params = useParams();
-  const postID = Number(params.id);
+  const postID = params.id;
+  console.log("postid = ",postID);
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
 
@@ -21,16 +24,17 @@ function Comments() {
     setComment("");
   };
 
-  const existingId = comments.filter((comment) => comment.id === postID);
-  if (existingId[0]) {
-    comments = existingId[0].comments;
-  }
+  // const existingId = comments.filter((comment) => comment[postID] === postID);
+  // console.log("existingid = " + existingId);
+  // if (existingId[0]) {
+  //   comments = existingId[0].comments;
+  // }
 
   return (
     <div className="comment">
-      {existingId && existingId[0] && existingId[0].comments
+      {/* {existingId && existingId[0] && existingId[0].comments
         ? comments.map((comment, index) => <p key={index}>{comment}</p>)
-        : null}
+        : null} */}
       <form action="" className="comment-form" onSubmit={handleSubmit}>
         <input
           type="text"

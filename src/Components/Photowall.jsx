@@ -10,11 +10,14 @@ import Photo from "./Photo";
 function Photowall() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  try {
-    dispatch(fetchDataFromDatabase());
-  } catch (err) {
-    console.error("Error fetching data:", err);
-  }
+  useEffect(() => {
+    try {
+      dispatch(fetchDataFromDatabase());
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
+  }, [dispatch]);
+
   let posts = useSelector((state) => state.posts);
   if (posts.length > 0) {
     posts = posts.sort((a, b) => b.date - a.date);

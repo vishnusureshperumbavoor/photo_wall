@@ -28,19 +28,14 @@ export const commentReducer = (state = initialState, action) => {
   const comment = action.payloadComment;
   switch (action.type) {
     case ADD_COMMENT:
-      const existingPostId = state.comments.findIndex((item) => item.id === id);
-      if (existingPostId !== -1) {
-        const addComments = [...state.comments];
-        addComments[existingPostId].comments.push(comment);
-        return {
-          ...state,
-          comments: addComments,
-        };
+      console.log("add comment");
+      console.log(state);
+      console.log(state[id]);
+      if (!state[id]) {
+        return { ...state, [id]: [comment] };
       } else {
-        return {
-          ...state,
-          comments: [...state.comments, { id, comments: [comment] }],
-        };
+        console.log("this worked");
+        return { ...state, [id]: [...state[id], comment] };
       }
 
     default:
