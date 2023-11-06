@@ -4,8 +4,8 @@ import { db } from "../database/config";
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
-export const LOAD_POSTS = "LOAD_POSTS";
-export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
+export const FETCH_POSTS = "FETCH_POSTS";
+export const FETCH_COMMENTS = "FETCH_COMMENTS";
 export const POST_COLLECTION = "posts";
 export const COMMENT_COLLECTION = "comments";
 
@@ -54,7 +54,7 @@ export const addCommentToDatabase = (index, comment) => {
   };
 };
 
-export const fetchDataFromDatabase = () => {
+export const fetchPostsFromDatabase = () => {
   return async (dispatch) => {
     try {
       const snapshot = await get(ref(db, POST_COLLECTION));
@@ -64,13 +64,7 @@ export const fetchDataFromDatabase = () => {
           index,
           ...postsData[index],
         }));
-        // const postsArray = Object.keys(postsData).map((key) => ({
-        //   [key]: {
-        //     ...postsData[key],
-        //   },
-        // }));
-        //const posts = Object.values(postsData);
-        dispatch(fetchDataFromReduxStore(posts));
+        dispatch(fetchPostsFromReduxStore(posts));
         return posts;
       } else {
         console.log("No data found in Firebase.");
@@ -83,14 +77,42 @@ export const fetchDataFromDatabase = () => {
   };
 };
 
-export const fetchDataFromReduxStore = (posts) => {
+export const fetchPostsFromReduxStore = (posts) => {
   return {
-    type: LOAD_POSTS,
+    type: FETCH_POSTS,
     payload: posts,
   };
 };
 
-export const deleteFromDatabase = (index) => {
+export const fetchCommentsFromDatabase = () => {
+  return async (dispatch) => {
+    try {
+      const snapshot = await get(ref(db,COMMENT_COLLECTION))
+      if(snapshot.exists()){
+        let comments = {}
+        snapshot.forEach((child)=>{
+          comments[child.key] = Object.values(child.val())
+        })
+        dispatch(fetchCommentsFromReduxStore(comments))
+      }else{
+        console.log("no comment exists in database");
+        return null;
+      }
+    } catch (err) {
+      console.log("error fetching comments from database");
+      return err;
+    }
+  };
+};
+
+export const fetchCommentsFromReduxStore = (comments)=>{
+  return{
+    type: FETCH_COMMENTS,
+    comments
+  }
+}
+
+export const deletePostFromDatabase = (index) => {
   return async (dispatch) => {
     try {
       await remove(ref(db, `${POST_COLLECTION}/${index}`));

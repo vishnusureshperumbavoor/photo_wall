@@ -9,10 +9,9 @@ import NotFound from "./NotFound";
 function Single() {
   const navigate = useNavigate();
   let posts = useSelector((state) => state.posts);
-  console.log("use selector post");
-  console.log(posts);
+  
   const params = useParams();
-  let postID = params.id
+  let postID = params.id 
   let post = posts.find((post) => post.index === postID);
   if(!post){
     return <NotFound/>

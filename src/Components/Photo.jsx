@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteFromDatabase,
+  deletePostFromDatabase,
   deletePostFromReduxStore,
+  fetchCommentsFromDatabase,
 } from "../reducers/actions";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +12,14 @@ function Photo({ post }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let comments = useSelector((state) => state.comments);
+  useEffect(() => {
+    dispatch(fetchCommentsFromDatabase());
+  }, [dispatch])
+  
 
   const handleDeletePost = (index, postId) => {
     //dispatch(deletePostFromReduxStore(postId));
-    dispatch(deleteFromDatabase(index));
+    dispatch(deletePostFromDatabase(index));
     navigate("/");
   };
 
@@ -24,7 +29,7 @@ function Photo({ post }) {
         <Link to={`/single/${post.index}`}>
           <img className="photo" src={post.imageLink} alt={post.description} />
         </Link>
-        {post.index} <br></br> {post.date}
+        {post.index} <br></br> {post.date} <br /><br />
         <figcaption>
           <p>{post.description}</p>
         </figcaption>
@@ -40,7 +45,7 @@ function Photo({ post }) {
           <Link className="button" to={`/single/${post.index}`}>
             <div className="comment-count">
               <div className="speech-bubble"></div>
-              {comments[post.index].length}
+              {comments[post.index] ? comments[post.index].length : 0}
             </div>
           </Link>
         </div>

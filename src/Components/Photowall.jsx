@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  fetchDataFromDatabase,
-  fetchDataFromReduxStore,
+  fetchPostsFromDatabase,
+  fetchPostsFromReduxStore,
 } from "../reducers/actions";
 import Photo from "./Photo";
 
@@ -12,7 +12,7 @@ function Photowall() {
   const navigate = useNavigate();
   useEffect(() => {
     try {
-      dispatch(fetchDataFromDatabase());
+      dispatch(fetchPostsFromDatabase());
     } catch (err) {
       console.error("Error fetching data:", err);
     }

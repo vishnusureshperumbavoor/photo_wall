@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCommentToReduxStore,
@@ -8,13 +8,12 @@ import { useParams } from "react-router-dom";
 
 function Comments() {
   const comments = useSelector((state) => state.comments);
-  console.log("comments state");
   console.log(comments);
   const params = useParams();
   const postID = params.id;
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
-
+  const existingIdComment = comments[postID];
   const handleChange = (e) => {
     setComment(e.target.value);
   };
@@ -25,10 +24,6 @@ function Comments() {
     dispatch(addCommentToDatabase(postID, comment));
     setComment("");
   };
-  let existingIdComment = [];
-  if(comments[postID] && comments[postID].length > 0){
-    existingIdComment = comments[postID];
-  }
 
   return (
     <div className="comment">
