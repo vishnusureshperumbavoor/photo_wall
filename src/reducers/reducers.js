@@ -28,13 +28,9 @@ export const commentReducer = (state = initialState, action) => {
   const comment = action.payloadComment;
   switch (action.type) {
     case ADD_COMMENT:
-      console.log("add comment");
-      console.log(state);
-      console.log(state[id]);
       if (!state[id]) {
         return { ...state, [id]: [comment] };
       } else {
-        console.log("this worked");
         return { ...state, [id]: [...state[id], comment] };
       }
 

@@ -46,7 +46,6 @@ export const addCommentToReduxStore = (id, comment) => {
 export const addCommentToDatabase = (index, comment) => {
   return async (dispatch) => {
     try {
-      console.log(COMMENT_COLLECTION + "/" + index);
       await set(push(ref(db, COMMENT_COLLECTION + "/" + index)), comment);
       dispatch(addCommentToReduxStore(index, comment));
     } catch (err) {
