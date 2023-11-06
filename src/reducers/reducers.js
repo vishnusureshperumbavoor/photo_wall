@@ -8,8 +8,6 @@ import {
 import { initialState } from "../data/data";
 
 export const postReducer = (state = initialState, action) => {
-  console.log("postsreducer");
-  console.log(state);
   switch (action.type) {
     case ADD_POST:
       return [...state, action.payload];
@@ -27,8 +25,6 @@ export const postReducer = (state = initialState, action) => {
 };
 
 export const commentReducer = (state = initialState, action) => {
-  console.log("commetsreducer");
-  console.log(state);
   const id = action.payloadId;
   const comment = action.payloadComment;
   switch (action.type) {

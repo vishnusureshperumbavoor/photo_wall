@@ -17,7 +17,6 @@ function Photo({ post }) {
   const handleDeletePost = (index) => {
     //dispatch(deletePostFromReduxStore(index));
     dispatch(deletePostFromDatabase(index));
-    //navigate("/");
   };
 
   return (
@@ -26,7 +25,6 @@ function Photo({ post }) {
         <Link to={`/single/${post.index}`}>
           <img className="photo" src={post.imageLink} alt={post.description} />
         </Link>
-        {post.index} <br></br> {post.date} <br />
         <br />
         <figcaption>
           <p>{post.description}</p>
