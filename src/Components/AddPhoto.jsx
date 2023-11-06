@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addPostToDatabase ,addPostToReduxStore} from "../reducers/actions";
+import { addPostToDatabase, addPostToReduxStore } from "../reducers/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Title from "./Title";

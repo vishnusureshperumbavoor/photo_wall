@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Title from "./Title";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import Comments from "./Comments";
 import NotFound from "./NotFound";
 
 function Single() {
-  const navigate = useNavigate();
   let posts = useSelector((state) => state.posts);
   
   const params = useParams();

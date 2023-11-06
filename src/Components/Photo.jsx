@@ -6,10 +6,8 @@ import {
   fetchCommentsFromDatabase,
 } from "../reducers/actions";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function Photo({ post }) {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   let comments = useSelector((state) => state.comments);
   useEffect(() => {
