@@ -28,7 +28,7 @@ function AddPhoto() {
         <form action="" onSubmit={handleAddPost}>
           <input
             type="text"
-            placeholder="Link"
+            placeholder="Add image URL"
             name="imageLink"
             onChange={handleChange}
             required
@@ -46,16 +46,6 @@ function AddPhoto() {
           <button className="button-3">Post</button>
         </form>
       </div>
-      <p>Nature</p>
-      <p>
-        https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=
-      </p>
-      <br />
-      <br />
-      <p>butterfly</p>
-      <p>
-        https://images.ctfassets.net/hrltx12pl8hq/3Z1N8LpxtXNQhBD5EnIg8X/975e2497dc598bb64fde390592ae1133/spring-images-min.jpg
-      </p>
     </>
   );
 }

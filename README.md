@@ -35,7 +35,14 @@ npm install
 npm start
 ```
 
-Now you can use the application at [localhost:3000](https://localhost:3001)
+Now you can use the application at [localhost:3000](https://localhost:3000)
+
+## Firebase deployment
+Make changes
+```
+npm run build
+firebase deploy
+```
 
 ## Contact
 
