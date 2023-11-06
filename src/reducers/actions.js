@@ -59,6 +59,8 @@ export const fetchPostsFromDatabase = () => {
   return async (dispatch) => {
     try {
       const snapshot = await get(ref(db, POST_COLLECTION));
+      console.log("snapshot daa");
+      console.log(snapshot.val());
       if (snapshot.exists()) {
         const postsData = snapshot.val();
         const posts = Object.keys(postsData).map((index) => ({
@@ -66,7 +68,11 @@ export const fetchPostsFromDatabase = () => {
           ...postsData[index],
         }));
         dispatch(fetchPostsFromReduxStore(posts));
-        return posts;
+        // let postsData = []
+        // snapshot.forEach((child)=>{
+        //   postsData.push(child.val())
+        // })
+        //dispatch(fetchPostsFromReduxStore(postsData))
       } else {
         console.log("No data found in Firebase.");
         return null;

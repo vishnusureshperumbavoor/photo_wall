@@ -14,10 +14,11 @@ export const postReducer = (state = initialState, action) => {
     case ADD_POST:
       return [...state, action.payload];
     case DELETE_POST:
-      return [
-        ...state.slice(0, action.payload),
-        ...state.slice(action.payload + 1),
-      ];
+      // return [
+      //   ...state.slice(0, action.payload),
+      //   ...state.slice(action.payload + 1),
+      // ];
+      return state.filter((item) => item.index !== action.payload);
     case FETCH_POSTS:
       return action.payload;
     default:
@@ -27,7 +28,7 @@ export const postReducer = (state = initialState, action) => {
 
 export const commentReducer = (state = initialState, action) => {
   console.log("commetsreducer");
-  console.log(state)
+  console.log(state);
   const id = action.payloadId;
   const comment = action.payloadComment;
   switch (action.type) {
@@ -39,7 +40,7 @@ export const commentReducer = (state = initialState, action) => {
         return { ...state, [id]: [...state[id], comment] };
       }
     case FETCH_COMMENTS:
-      return action.comments
+      return action.comments;
     default:
       return state;
   }
